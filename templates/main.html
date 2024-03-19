@@ -8,9 +8,93 @@
 </head>
 <body>
     <h1>Data Display</h1>
+
+    <form action="/data" method="get">
+        <label>Make</label>
+        <select name="make">
+            <option value="">Select a make...</option>
+            {% for make in ['Honda', 'Maruti Suzuki', 'Hyundai', 'Toyota', 'Mercedes-Benz', 'BMW', 'Skoda', 'Nissan', 'Renault', 'Tata', 'Volkswagen', 'Ford', 'Audi', 'Mahindra', 'MG', 'Jeep', 'Porsche', 'Kia', 'Land Rover', 'Volvo', 'Maserati', 'Jaguar', 'Isuzu', 'Fiat', 'MINI', 'Ferrari', 'Mitsubishi', 'Datsun', 'Lamborghini', 'Chevrolet', 'Ssangyong', 'Rolls-Royce', 'Lexus'] %}
+                <option value="{{ make }}" {% if make == request.args.get('make') %} selected {% endif %}>{{ make }}</option>
+            {% endfor %}
+        </select><br>
+        <label>Price from</label>
+        <input type="number" id="price_lower" name="price_lower" value="{{ request.args.get('price_lower') }}">
+        <label> to </label>
+        <input type="number" id="price_upper" name="price_upper" value="{{ request.args.get('price_upper') }}"><br>
+
+        <label>Year from</label>
+        <input type="number" id="year_lower" name="year_lower" value="{{ request.args.get('year_lower') }}">
+        <label> to </label>
+        <input type="number" id="year_upper" name="year_upper" value="{{ request.args.get('year_upper') }}"><br>
+
+        <label>Mileage from</label>
+        <input type="number" id="kilometer_lower" name="kilometer_lower" value="{{ request.args.get('kilometer_lower') }}">
+        <label> to </label>
+        <input type="number" id="kilometer_upper" name="kilometer_upper" value="{{ request.args.get('kilometer_upper') }}"><br>
+
+        <label>Fuel Type</label>
+        <select name="fuel_type">
+            <option value="">Select a fuel type...</option>
+            {% for fuel_type in ['Petrol', 'Diesel', 'CNG', 'LPG', 'Electric', 'CNG + CNG', 'Hybrid', 'Petrol + CNG', 'Petrol + LPG'] %}
+                <option value="{{ fuel_type }}" {% if fuel_type == request.args.get('fuel_type') %} selected {% endif %}>{{ fuel_type }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Transmission</label>
+        <select name="transmission">
+            <option value="">Select a transmission type...</option>
+            {% for transmission in ['Manual', 'Automatic'] %}
+                <option value="{{ transmission }}" {% if transmission == request.args.get('transmission') %} selected {% endif %}>{{ transmission }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Location</label>
+        <select name="location">
+            <option value="">Select a location...</option>
+            {% for location in ['Pune', 'Ludhiana', 'Lucknow', 'Mangalore', 'Mumbai', 'Coimbatore', 'Bangalore', 'Delhi', 'Raipur', 'Kanpur', 'Patna', 'Vadodara', 'Hyderabad', 'Yamunanagar', 'Gurgaon', 'Jaipur', 'Deoghar', 'Agra', 'Goa', 'Warangal', 'Jalandhar', 'Noida', 'Ahmedabad', 'Mohali', 'Navi Mumbai', 'Ghaziabad', 'Kolkata', 'Zirakpur', 'Nagpur', 'Thane', 'Faridabad', 'Ranchi', 'Chandigarh', 'Amritsar', 'Chennai', 'Udupi', 'Panvel', 'Jamshedpur', 'Aurangabad', 'Rudrapur', 'Nashik', 'Varanasi', 'Salem', 'Dehradun', 'Valsad', 'Haldwani', 'Dharwad', 'Surat', 'Indore', 'Karnal', 'Panchkula', 'Mysore', 'Rohtak', 'Ambala Cantt', 'Samastipur', 'Unnao', 'Purnea', 'Bhubaneswar', 'Kheda', 'Kollam', 'Meerut', 'Ernakulam', 'Kharar', 'Mirzapur', 'Bhopal', 'Gorakhpur', 'Guwahati', 'Allahabad', 'Muzaffurpur', 'Faizabad', 'Kota', 'Pimpri-Chinchwad', 'Dak. Kannada', 'Ranga Reddy', 'Bulandshahar', 'Roorkee', 'Siliguri'] %}
+                <option value="{{ location }}" {% if location == request.args.get('location') %} selected {% endif %}>{{ location }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Color</label>
+        <select name="color">
+            <option value="">Select a color...</option>
+            {% for location in ['Pune', 'Ludhiana', 'Lucknow', 'Mangalore', 'Mumbai', 'Coimbatore', 'Bangalore', 'Delhi', 'Raipur', 'Kanpur', 'Patna', 'Vadodara', 'Hyderabad', 'Yamunanagar', 'Gurgaon', 'Jaipur', 'Deoghar', 'Agra', 'Goa', 'Warangal', 'Jalandhar', 'Noida', 'Ahmedabad', 'Mohali', 'Navi Mumbai', 'Ghaziabad', 'Kolkata', 'Zirakpur', 'Nagpur', 'Thane', 'Faridabad', 'Ranchi', 'Chandigarh', 'Amritsar', 'Chennai', 'Udupi', 'Panvel', 'Jamshedpur', 'Aurangabad', 'Rudrapur', 'Nashik', 'Varanasi', 'Salem', 'Dehradun', 'Valsad', 'Haldwani', 'Dharwad', 'Surat', 'Indore', 'Karnal', 'Panchkula', 'Mysore', 'Rohtak', 'Ambala Cantt', 'Samastipur', 'Unnao', 'Purnea', 'Bhubaneswar', 'Kheda', 'Kollam', 'Meerut', 'Ernakulam', 'Kharar', 'Mirzapur', 'Bhopal', 'Gorakhpur', 'Guwahati', 'Allahabad', 'Muzaffurpur', 'Faizabad', 'Kota', 'Pimpri-Chinchwad', 'Dak. Kannada', 'Ranga Reddy', 'Bulandshahar', 'Roorkee', 'Siliguri'] %}
+                <option value="{{ location }}" {% if location == request.args.get('location') %} selected {% endif %}>{{ location }}</option>
+            {% endfor %}
+        </select><br>
+
+
+        <label>Engine CC from</label>
+        <input type="number" id="engine_cc_lower" name="engine_cc_lower" value="{{ request.args.get('engine_cc_lower') }}">
+        <label> to </label>
+        <input type="number" id="engine_cc_upper" name="engine_cc_upper" value="{{ request.args.get('engine_cc_upper') }}"><br>
+
+        <label>Max Power from</label>
+        <input type="number" id="max_power_hp_lower" name="max_power_hp_lower" value="{{ request.args.get('max_power_hp_lower') }}">
+        <label> to </label>
+        <input type="number" id="max_power_hp_upper" name="max_power_upper" value="{{ request.args.get('max_power_upper') }}"><br>
+
+        <label>Max Torque from</label>
+        <input type="number" id="max_torque_nm_lower" name="max_torque_nm_lower" value="{{ request.args.get('max_torque_nm_lower') }}">
+        <label> to </label>
+        <input type="number" id="max_torque_nm_upper" name="max_torque_nm_upper" value="{{ request.args.get('max_torque_nm_upper') }}"><br>
+
+        <label>Seating Capacity from</label>
+        <input type="number" id="seating_capacity_lower" name="seating_capacity_lower" value="{{ request.args.get('seating_capacity_lower') }}">
+        <label> to </label>
+        <input type="number" id="seating_capacity_upper" name="seating_capacity_upper" value="{{ request.args.get('seating_capacity_upper') }}"><br>
+
+        <label>Fuel Tank Capacity from</label>
+        <input type="number" id="fuel_tank_capacity_lower" name="fuel_tank_capacity_lower" value="{{ request.args.get('fuel_tank_capacity_lower') }}">
+        <label> to </label>
+        <input type="number" id="fuel_tank_capacity_upper" name="fuel_tank_capacity_upper" value="{{ request.args.get('fuel_tank_capacity_upper') }}"><br>
+        <button type="submit">Apply Filters</button>
+    </form>
+
     <table border="1">
         <tr>
-            {% for column in data[0] %}
+            {% for column in columns %}
                 <th>{{ column }}</th>
             {% endfor %}
         </tr>

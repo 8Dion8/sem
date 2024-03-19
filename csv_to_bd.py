@@ -35,4 +35,4 @@ def csv_to_sqlite(csv_file, db_file):
     conn.commit()
     conn.close()
 
-csv_to_sqlite('car_details_v4.csv', 'main.db')
+csv_to_sqlite('car_details_sanitized.csv', 'main.db')
