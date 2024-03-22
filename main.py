@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template
 import sqlite3
 import re
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder = "templates")
 db_file = 'main.db'
 
 def query_data(filters=None):

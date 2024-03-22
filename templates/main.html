@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Display</title>
+    <link rel="stylesheet" href="templates/stylesheet.css"/>
 </head>
 <body>
-    <h1>Data Display</h1>
+    <h1>Used Car Search</h1>
 
     <form action="/data" method="get">
         <label>Make</label>
@@ -59,8 +60,8 @@
         <label>Color</label>
         <select name="color">
             <option value="">Select a color...</option>
-            {% for location in ['Pune', 'Ludhiana', 'Lucknow', 'Mangalore', 'Mumbai', 'Coimbatore', 'Bangalore', 'Delhi', 'Raipur', 'Kanpur', 'Patna', 'Vadodara', 'Hyderabad', 'Yamunanagar', 'Gurgaon', 'Jaipur', 'Deoghar', 'Agra', 'Goa', 'Warangal', 'Jalandhar', 'Noida', 'Ahmedabad', 'Mohali', 'Navi Mumbai', 'Ghaziabad', 'Kolkata', 'Zirakpur', 'Nagpur', 'Thane', 'Faridabad', 'Ranchi', 'Chandigarh', 'Amritsar', 'Chennai', 'Udupi', 'Panvel', 'Jamshedpur', 'Aurangabad', 'Rudrapur', 'Nashik', 'Varanasi', 'Salem', 'Dehradun', 'Valsad', 'Haldwani', 'Dharwad', 'Surat', 'Indore', 'Karnal', 'Panchkula', 'Mysore', 'Rohtak', 'Ambala Cantt', 'Samastipur', 'Unnao', 'Purnea', 'Bhubaneswar', 'Kheda', 'Kollam', 'Meerut', 'Ernakulam', 'Kharar', 'Mirzapur', 'Bhopal', 'Gorakhpur', 'Guwahati', 'Allahabad', 'Muzaffurpur', 'Faizabad', 'Kota', 'Pimpri-Chinchwad', 'Dak. Kannada', 'Ranga Reddy', 'Bulandshahar', 'Roorkee', 'Siliguri'] %}
-                <option value="{{ location }}" {% if location == request.args.get('location') %} selected {% endif %}>{{ location }}</option>
+            {% for color in ['Grey', 'White', 'Maroon', 'Red', 'Blue', 'Orange', 'Silver', 'Brown', 'Black', 'Bronze', 'Gold', 'Beige', 'Green', 'Yellow', 'Purple', 'Others', 'Pink'] %}
+                <option value="{{ color }}" {% if color == request.args.get('color') %} selected {% endif %}>{{ color }}</option>
             {% endfor %}
         </select><br>
 
@@ -80,6 +81,15 @@
         <label> to </label>
         <input type="number" id="max_torque_nm_upper" name="max_torque_nm_upper" value="{{ request.args.get('max_torque_nm_upper') }}"><br>
 
+        <label>Drivetrain</label>
+        <select name="drivetrain_type">
+            <option value="">Select a drivetrain type...</option>
+            {% for drivetrain_type in ['FWD', 'RWD', 'AWD'] %}
+                <option value="{{ drivetrain_type }}" {% if location == request.args.get('drivetrain_type') %} selected {% endif %}>{{ drivetrain_type }}</option>
+            {% endfor %}
+        </select><br>
+
+
         <label>Seating Capacity from</label>
         <input type="number" id="seating_capacity_lower" name="seating_capacity_lower" value="{{ request.args.get('seating_capacity_lower') }}">
         <label> to </label>
@@ -89,7 +99,7 @@
         <input type="number" id="fuel_tank_capacity_lower" name="fuel_tank_capacity_lower" value="{{ request.args.get('fuel_tank_capacity_lower') }}">
         <label> to </label>
         <input type="number" id="fuel_tank_capacity_upper" name="fuel_tank_capacity_upper" value="{{ request.args.get('fuel_tank_capacity_upper') }}"><br>
-        <button type="submit">Apply Filters</button>
+        <button type="submit" id="submit-button">Apply Filters</button>
     </form>
 
     <table border="1">
